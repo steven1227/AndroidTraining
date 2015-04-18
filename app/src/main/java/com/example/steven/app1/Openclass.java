@@ -3,6 +3,7 @@ package com.example.steven.app1;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -18,7 +19,7 @@ public class Openclass extends Activity implements View.OnClickListener,RadioGro
     private Button return1;
     private RadioGroup group;
     private String bread;
-    private String sendData;
+    private String sendData="Probably Right";;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +36,9 @@ public class Openclass extends Activity implements View.OnClickListener,RadioGro
 
         Bundle gotbasket=a.getExtras();
         //gotbasket.get
-        bread=gotbasket.getString("hungry");
-        hi.setText(bread+":"+gotbasket.getInt("ID"));
+        Log.v("do not worry",""+a.hasExtra("hungry1"));
+ //       bread=gotbasket.getString("hungry");
+        hi.setText(a.getStringExtra("hungry")+":"+gotbasket.getInt("ID")+gotbasket.getIntArray("numbers")[1]);
 
     }
 
