@@ -9,6 +9,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!--<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />-->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="21"/>
 
@@ -52,7 +55,7 @@
         <activity
             android:name=".AboutUs"
             android:label="this is steven"
-            android:theme="@android:style/Theme.Dialog">
+            android:theme="@android:style/Theme.DeviceDefault.Dialog">
             <intent-filter>
                 <action android:name="com.example.steven.app1.ABOUT" />
                 <category android:name="android.intent.category.DEFAULT" />

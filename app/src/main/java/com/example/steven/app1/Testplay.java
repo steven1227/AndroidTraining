@@ -62,21 +62,45 @@ public class Testplay extends Activity implements View.OnClickListener{
                 }
                 else if (checkable.equals("WTF"))
                 {
-                    Random crazy=new Random();
+
                     resultplay.setText("what");
-                    resultplay.setTextSize(crazy.nextInt(75));
-                    resultplay.setTextColor(Color.rgb(crazy.nextInt(255),crazy.nextInt(255),crazy.nextInt(255)));
-                    switch (crazy.nextInt(3))
-                    {
-                        case 0:resultplay.setGravity(Gravity.CENTER);break;
-                        case 1:resultplay.setGravity(Gravity.LEFT);break;
-                        case 2:resultplay.setGravity(Gravity.RIGHT);break;
-                    }
+//                    Thread a=new Thread(new Runnable() {
+//                        @Override
+//                        public void run() {
+                            Random crazy=new Random();
+//                            while(true) {
+                                resultplay.setTextSize(crazy.nextInt(75));
+                                resultplay.setTextColor(Color.rgb(crazy.nextInt(255), crazy.nextInt(255), crazy.nextInt(255)));
+
+//
+//                                    try {
+//                                        Thread.sleep(100000);
+//                                    } catch (InterruptedException e) {
+//                                        e.printStackTrace();
+//                                    }
+                                switch (crazy.nextInt(3)) {
+                                    case 0:
+                                        resultplay.setGravity(Gravity.CENTER);
+                                        break;
+                                    case 1:
+                                        resultplay.setGravity(Gravity.LEFT);
+                                        break;
+                                    case 2:
+                                        resultplay.setGravity(Gravity.RIGHT);
+                                        break;
+                                }
+//                            }
+//
+//                        }
+//                    }
+//
+//                    );
+//                    a.start();
                 }
                 else
                 {
                     resultplay.setGravity(Gravity.CENTER);
-                    resultplay.setText("invalid");
+//                    resultplay.setText("invalid");
                     resultplay.setTextColor(Color.BLACK);
                 }
 
