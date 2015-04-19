@@ -3,6 +3,9 @@ package com.example.steven.app1;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.media.Image;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,11 +18,13 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -35,7 +40,9 @@ public class TabActivity extends ActionBarActivity {
     private TabHost t1;
     private List<Contact> contacts=new ArrayList<>();
     private ListView list;
+    private ImageView photo;
     int i;
+    private Uri imageUri=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +55,10 @@ public class TabActivity extends ActionBarActivity {
         this.email=(EditText)findViewById(R.id.email);
         this.t1=(TabHost)findViewById(R.id.tabHost);
         click.setEnabled(false);
+        this.photo=(ImageView)findViewById(R.id.contactimg);
+
+
+
 
         this.list=(ListView)findViewById(R.id.listView);
 
@@ -98,12 +109,12 @@ public class TabActivity extends ActionBarActivity {
 //                a.setText("hello");
 //                a.setDuration(Toast.LENGTH_LONG);
 ////                a.show();
-                Toast a=Toast.makeText(TabActivity.this,"nope",Toast.LENGTH_SHORT);
+                Toast a=Toast.makeText(getApplicationContext(),"nope",Toast.LENGTH_SHORT);
                 a.show();
 
                // addContacts(name.getText().toString(),email.getText().toString(),address.getText().toString(),phone.getText().toString());
-                temp.add(new Contact(name.getText().toString(),email.getText().toString(),address.getText().toString()+"",phone.getText().toString()));
-                Log.v("do not worry",contacts.size()+" "+contacts.get(contacts.size()-1).toString());
+                temp.add(new Contact(name.getText().toString(),email.getText().toString(),address.getText().toString(),phone.getText().toString(),imageUri));
+                Log.v("do not worry", contacts.size() + " " + contacts.get(contacts.size() - 1).toString());
 //               i++;
 //                if(i==10)
 //                    contacts.clear();
@@ -118,10 +129,32 @@ public class TabActivity extends ActionBarActivity {
 //           this.contacts
 //       );
 
+        this.photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a=new Intent();
+                a.setType("image/*");
+                a.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(a,"Select Contact Photo"),1);
+
+            }
+        });
+    }
+
+    @Override
+        public void onActivityResult(int reqCode, int resCode, Intent data){
+        if(resCode==RESULT_OK)
+            if(reqCode==1)
+            {
+                Log.v(this.getClass().getSimpleName(),"image success");
+                this.imageUri=data.getData();
+                this.photo.setImageURI(data.getData());
+            }
+
     }
 
     private void addContacts(String name, String email, String address, String phone){
-        contacts.add(new Contact(name,email,address,phone));
+//        contacts.add(new Contact(name,email,address,phone));
 
     }
 
@@ -148,6 +181,9 @@ public class TabActivity extends ActionBarActivity {
 
             TextView address=(TextView)convertView.findViewById(R.id.textView5);
             address.setText(current.get_address());
+
+            ImageView imgphoto=(ImageView)convertView.findViewById(R.id.avator);
+            imgphoto.setImageURI(current.getIamgeuri());
            // return super.getView(position, convertView, parent);
             return convertView;
         }

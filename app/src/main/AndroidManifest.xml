@@ -124,7 +124,7 @@
 
         <activity
             android:name=".TabActivity"
-            android:label="@string/title_activity_tab" >
+            android:label="Contacts Manager" >
             <intent-filter>
                 <action android:name="com.example.steven.app1.TabActivity" />
                 <category android:name="android.intent.category.DEFAULT" />
