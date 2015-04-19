@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.media.Image;
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
@@ -42,7 +43,9 @@ public class TabActivity extends ActionBarActivity {
     private ListView list;
     private ImageView photo;
     int i;
-    private Uri imageUri=null;
+    private Uri imageUri=Uri.parse("android.resource://com.example.steven.app1/drawable/nouser");
+    private Dbhandler dbhandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,8 +60,7 @@ public class TabActivity extends ActionBarActivity {
         click.setEnabled(false);
         this.photo=(ImageView)findViewById(R.id.contactimg);
 
-
-
+        this.dbhandler=new Dbhandler(getApplicationContext());
 
         this.list=(ListView)findViewById(R.id.listView);
 
@@ -75,7 +77,13 @@ public class TabActivity extends ActionBarActivity {
         tab2.setIndicator("Contact List");
         t1.addTab(tab2);
        // final ArrayAdapter<Contact> temp=new ArrayAdapter<Contact>(this,R.layout.contactview,contacts);
-        final contactListAdaptor temp=new contactListAdaptor();
+        List<Contact> addable=dbhandler.getAll();
+        for (int i=0;i<addable.size();i++)
+        {
+            contacts.add(addable.get(i));
+        }
+
+        final  contactListAdaptor temp=new contactListAdaptor();
         list.setAdapter(temp);
 
         name.addTextChangedListener(new TextWatcher() {
@@ -109,17 +117,28 @@ public class TabActivity extends ActionBarActivity {
 //                a.setText("hello");
 //                a.setDuration(Toast.LENGTH_LONG);
 ////                a.show();
-                Toast a=Toast.makeText(getApplicationContext(),"nope",Toast.LENGTH_SHORT);
+                Toast a=Toast.makeText(getApplicationContext(),"Add Contacts Successfully",Toast.LENGTH_SHORT);
                 a.show();
 
                // addContacts(name.getText().toString(),email.getText().toString(),address.getText().toString(),phone.getText().toString());
-                temp.add(new Contact(name.getText().toString(),email.getText().toString(),address.getText().toString(),phone.getText().toString(),imageUri));
+               // temp.add(new Contact(name.getText().toString(),email.getText().toString(),address.getText().toString(),phone.getText().toString(),imageUri,0));
+                Log.v(this.getClass().getSimpleName(),dbhandler.getClass().getSimpleName());
+                Contact go=new Contact(name.getText().toString(),email.getText().toString(),address.getText().toString(),phone.getText().toString(),imageUri,dbhandler.getcount());
+
+                dbhandler.insert(go);
+                contacts.add(go);
+                list.setAdapter(new contactListAdaptor());
+
+                name.setText("");
+                email.setText("");
+                address.setText("");
+                phone.setText("");
+                photo.setImageResource(R.drawable.nouser);
+                imageUri=Uri.parse("android.resource://com.example.steven.app1/drawable/nouser");
                 Log.v("do not worry", contacts.size() + " " + contacts.get(contacts.size() - 1).toString());
 //               i++;
 //                if(i==10)
 //                    contacts.clear();
-
-
             }
         });
 
@@ -139,6 +158,8 @@ public class TabActivity extends ActionBarActivity {
 
             }
         });
+
+
     }
 
     @Override
@@ -146,17 +167,17 @@ public class TabActivity extends ActionBarActivity {
         if(resCode==RESULT_OK)
             if(reqCode==1)
             {
-                Log.v(this.getClass().getSimpleName(),"image success");
+
                 this.imageUri=data.getData();
                 this.photo.setImageURI(data.getData());
             }
 
     }
 
-    private void addContacts(String name, String email, String address, String phone){
-//        contacts.add(new Contact(name,email,address,phone));
-
-    }
+//    private void addContacts(String name, String email, String address, String phone){
+////        contacts.add(new Contact(name,email,address,phone));
+//
+//    }
 
     private class contactListAdaptor extends ArrayAdapter<Contact>{
 
@@ -183,6 +204,7 @@ public class TabActivity extends ActionBarActivity {
             address.setText(current.get_address());
 
             ImageView imgphoto=(ImageView)convertView.findViewById(R.id.avator);
+            Log.e("Image uRI ???:\n",getApplicationContext().getPackageName());// current.getIamgeuri().toString());
             imgphoto.setImageURI(current.getIamgeuri());
            // return super.getView(position, convertView, parent);
             return convertView;
