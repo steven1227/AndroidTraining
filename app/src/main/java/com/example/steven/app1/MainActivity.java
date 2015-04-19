@@ -84,4 +84,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         ((TextView)v).setText(" your total is " + counter);
 
     }
+    public void SendMsg(View v){
+       this.display.setText("haha");
+    }
 }
