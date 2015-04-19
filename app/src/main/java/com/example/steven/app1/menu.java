@@ -36,7 +36,7 @@ public class menu extends ListActivity{
         classes.add("test2");
         classes.add("test3");
         classes.add("test4");
-        menulist.add("t5");
+//        menulist.add("t5");
         //classes.clear();
     }
     @Override
@@ -45,7 +45,7 @@ public class menu extends ListActivity{
         if (true) {
             String ourclass = null;
                 classes.add("test5");
-                menulist.add("test6");
+                menulist.notifyDataSetChanged();
                 //super.setListAdapter(menulist);
 
                 ourclass = "com.example.steven.app1." + classes.get(position);

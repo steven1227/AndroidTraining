@@ -12,10 +12,12 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,9 +44,42 @@ public class TabActivity extends ActionBarActivity {
     private List<Contact> contacts=new ArrayList<>();
     private ListView list;
     private ImageView photo;
-    int i;
+    int index;
     private Uri imageUri=Uri.parse("android.resource://com.example.steven.app1/drawable/nouser");
     private Dbhandler dbhandler;
+    contactListAdaptor temp;
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case 0:
+            {
+                break;
+            }
+            case 1:
+            {
+
+                dbhandler.delete(contacts.get(index));
+                contacts.remove(index);
+                break;
+            }
+
+
+        }
+
+        temp.notifyDataSetChanged();
+        return super.onContextItemSelected(item);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.setHeaderIcon(R.drawable.pencil_icon);
+        menu.setHeaderTitle("Contact Edition Options");
+        menu.add(Menu.NONE,0,Menu.NONE,"Edit Contact");
+        menu.add(Menu.NONE,1,Menu.NONE,"Delete Contact");
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +98,7 @@ public class TabActivity extends ActionBarActivity {
         this.dbhandler=new Dbhandler(getApplicationContext());
 
         this.list=(ListView)findViewById(R.id.listView);
-
+        this.temp=new contactListAdaptor();
 
         t1.setup();
 
@@ -83,7 +118,7 @@ public class TabActivity extends ActionBarActivity {
             contacts.add(addable.get(i));
         }
 
-        final  contactListAdaptor temp=new contactListAdaptor();
+
         list.setAdapter(temp);
 
         name.addTextChangedListener(new TextWatcher() {
@@ -95,10 +130,10 @@ public class TabActivity extends ActionBarActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(!name.getText().toString().trim().equals(""))
-                click.setEnabled(true);
+                if (!name.getText().toString().trim().equals(""))
+                    click.setEnabled(true);
                 else
-                click.setEnabled(false);
+                    click.setEnabled(false);
 
             }
 
@@ -109,6 +144,16 @@ public class TabActivity extends ActionBarActivity {
             }
         });
 
+        this.registerForContextMenu(list);
+
+
+        list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                index=position;
+                return false;
+            }
+        });
 
         click.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,7 +172,8 @@ public class TabActivity extends ActionBarActivity {
 
                 dbhandler.insert(go);
                 contacts.add(go);
-                list.setAdapter(new contactListAdaptor());
+                temp.notifyDataSetChanged();
+//                list.setAdapter(new contactListAdaptor());
 
                 name.setText("");
                 email.setText("");
