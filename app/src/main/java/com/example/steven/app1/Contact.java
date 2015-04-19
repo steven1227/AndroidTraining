@@ -13,12 +13,14 @@ public class Contact {
     private String _address;
     private String _phone;
     private Uri iamgeuri;
-    public Contact(String name, String email, String address, String phone, Uri iamgeuri){
+    private int _id;
+    public Contact(String name, String email, String address, String phone, Uri iamgeuri, int id){
         this._name=name;
         this._address=address;
         this._email=email;
         this._phone=phone;
         this.iamgeuri=iamgeuri;
+        this._id=id;
     }
     public String get_name(){
         return this._name;
@@ -35,5 +37,8 @@ public class Contact {
 
     public Uri getIamgeuri() {
         return this.iamgeuri;
+    }
+    public int get_id(){
+        return _id;
     }
 }
