@@ -15,5 +15,6 @@
     <string name="searchText">Search what?</string>
     <string name="clearResults">Clear Results</string>
     <string name="noResults">No results!</string>
+    <string name="title_activity_tab">TabActivity</string>
 
 </resources>

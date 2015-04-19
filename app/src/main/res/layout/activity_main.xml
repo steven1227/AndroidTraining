@@ -8,7 +8,7 @@
     <TextView android:text="@string/hello_world"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="40sp"
+        android:textSize="40dp"
         android:gravity="center"
         android:id="@+id/tvdisplay"
         />
@@ -28,6 +28,14 @@
         android:text="@string/key2"
         android:id="@+id/b_sub"
         android:textStyle="bold" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OnClick"
+        android:onClick="SendMsg"
+        android:id="@+id/button"
+        android:layout_gravity="center_horizontal" />
 
 
 </LinearLayout>

@@ -53,14 +53,17 @@ public class Data extends Activity implements View.OnClickListener{
             Bundle basket=new Bundle();
             basket.putString("hungry",bread);
             basket.putInt("ID",911227);
+            basket.putIntArray("numbers",new int[]{1,2,3,4});
             Intent a= new Intent(this,Openclass.class);
             a.putExtras(basket);
+
             startActivity(a);
         }
 
         else if (v.getId()==R.id.start2)
         {
             Intent i= new Intent(this, Openclass.class);
+            i.putExtra("hungry","nopesteven");
             startActivityForResult(i,0);
         }
 

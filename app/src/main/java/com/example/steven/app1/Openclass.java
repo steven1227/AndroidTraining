@@ -3,6 +3,7 @@ package com.example.steven.app1;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -18,25 +19,30 @@ public class Openclass extends Activity implements View.OnClickListener,RadioGro
     private Button return1;
     private RadioGroup group;
     private String bread;
-    private String sendData;
+    private String sendData="Probably Right";;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.send);
+       // this.setContentView(R.layout.send);
 
-        hi=(TextView)findViewById(R.id.textView);
-        return1 = (Button) findViewById(R.id.buttonreturn);
-        group=(RadioGroup)findViewById(R.id.plaugroup);
-        return1.setOnClickListener(this);
-        group.setOnCheckedChangeListener(this);
-        returntext=(TextView)findViewById(R.id.textreturn);
+//        hi=(TextView)findViewById(R.id.textView);
+//        return1 = (Button) findViewById(R.id.buttonreturn);
+//        group=(RadioGroup)findViewById(R.id.plaugroup);
+//        return1.setOnClickListener(this);
+//        group.setOnCheckedChangeListener(this);
+//        returntext=(TextView)findViewById(R.id.textreturn);
 
         Intent a=getIntent();
-
-        Bundle gotbasket=a.getExtras();
+       // Bundle gotbasket=a.getExtras();
         //gotbasket.get
-        bread=gotbasket.getString("hungry");
-        hi.setText(bread+":"+gotbasket.getInt("ID"));
+
+
+         TextView hi2=new TextView(this);
+         hi2.setText(a.getStringExtra("hungry"));
+        Log.v("do not worry",hi2.toString());
+ //       bread=gotbasket.getString("hungry");
+        this.setContentView(hi2);
+      //  hi.setText(a.getStringExtra("hungry")+":");//+gotbasket.getInt("ID")+gotbasket.getIntArray("numbers")[1]);
 
     }
 

@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements View.OnClickListener{
 
    private int counter=0;
 
@@ -26,24 +26,25 @@ public class MainActivity extends ActionBarActivity {
         display = (TextView) findViewById(R.id.tvdisplay);
         sub = (Button) findViewById(R.id.b_sub);
 
+            add.setOnClickListener(this);
+            sub.setOnClickListener(this);
+//        add.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                counter++;
+//                display.setText(" your total is " + counter);
+//            }
+//        });
 
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                counter++;
-                display.setText(" your total is " + counter);
-            }
-        });
-
-        sub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                counter--;
-                display.setText(" your total is " + counter);
-
-
-            }
-        });
+//        sub.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                counter--;
+//                display.setText(" your total is " + counter);
+//
+//
+//            }
+//        });
     }
 
     @Override
@@ -69,4 +70,21 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onClick(View v) {
+        if(v.getId()==R.id.b_add){
+            this.counter++;
+
+        }
+        else if(v.getId()==R.id.b_sub){
+            this.counter--;
+
+        }
+
+        ((TextView)v).setText(" your total is " + counter);
+
+    }
+    public void SendMsg(View v){
+       this.display.setText("haha");
+    }
 }
