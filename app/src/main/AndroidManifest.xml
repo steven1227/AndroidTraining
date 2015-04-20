@@ -131,6 +131,27 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".GFX"
+            android:label="Graphics" >
+            <intent-filter>
+                <action android:name="com.example.steven.app1.GFX" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".Surface"
+            android:label="surface" >
+            <intent-filter>
+                <action android:name="com.example.steven.app1.Surface" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+
+
+
     </application>
 
 </manifest>

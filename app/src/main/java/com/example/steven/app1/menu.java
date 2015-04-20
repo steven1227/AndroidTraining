@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -18,7 +20,7 @@ import java.util.Arrays;
  * Created by steven on 2-3-15.
  */
 public class menu extends ListActivity{
-   String [] temp ={"MainActivity","Testplay","Email","Camera","Data","Openclass","Map","example7","TabActivity","example9"};
+   String [] temp ={"MainActivity","Testplay","Email","Camera","Data","Openclass","Map","GFX","TabActivity","Surface"};
     private ArrayList<String> classes=new ArrayList<>(Arrays.asList(temp));
 
     ArrayAdapter<String> menulist;
@@ -26,6 +28,10 @@ public class menu extends ListActivity{
     protected void onCreate(Bundle savedstate)
     {
         super.onCreate(savedstate);
+
+        //set fullscreen
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         menulist=new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1
                 ,classes);

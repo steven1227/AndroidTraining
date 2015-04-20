@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener{
@@ -22,12 +23,16 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         add = (Button) findViewById(R.id.b_add);
         display = (TextView) findViewById(R.id.tvdisplay);
         sub = (Button) findViewById(R.id.b_sub);
 
-            add.setOnClickListener(this);
-            sub.setOnClickListener(this);
+        add.setOnClickListener(this);
+        sub.setOnClickListener(this);
+
+
 //        add.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -81,10 +86,12 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         }
 
-        ((TextView)v).setText(" your total is " + counter);
+        this.display.setText(" your total is " + counter);
 
     }
     public void SendMsg(View v){
-       this.display.setText("haha");
+
+        Toast.makeText(getApplicationContext(),"Hello World",Toast.LENGTH_SHORT).show();
+
     }
 }
