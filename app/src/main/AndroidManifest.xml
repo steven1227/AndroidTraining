@@ -131,6 +131,16 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".GFX"
+            android:label="Graphics" >
+            <intent-filter>
+                <action android:name="com.example.steven.app1.GFX" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+
     </application>
 
 </manifest>

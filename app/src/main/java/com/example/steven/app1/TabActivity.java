@@ -84,6 +84,8 @@ public class TabActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        
         setContentView(R.layout.activity_tab);
 
         this.click=(Button)findViewById(R.id.clickme);
@@ -233,8 +235,10 @@ public class TabActivity extends ActionBarActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
+
             if(convertView==null)
                convertView=getLayoutInflater().inflate(R.layout.contactview,parent,false);
+
             Contact current=contacts.get(position);
 
             TextView name=(TextView)convertView.findViewById(R.id.textView2);
