@@ -29,8 +29,9 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         display = (TextView) findViewById(R.id.tvdisplay);
         sub = (Button) findViewById(R.id.b_sub);
 
-            add.setOnClickListener(this);
-            sub.setOnClickListener(this);
+        add.setOnClickListener(this);
+        sub.setOnClickListener(this);
+
 
 //        add.setOnClickListener(new View.OnClickListener() {
 //            @Override
