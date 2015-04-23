@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#ffff6483"
     android:weightSum="1"
-    android:paddingTop="300dp">
+    android:paddingTop="200dp">
 
 
     <TextView
@@ -17,4 +17,14 @@
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.86"
         android:textSize="40dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clickme"
+        android:id="@+id/buttonf"
+        android:layout_gravity="right"
+        android:layout_weight="0.86"
+        android:background="#ffff0b22" />
 </LinearLayout>

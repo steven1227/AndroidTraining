@@ -7,14 +7,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MyFragment extends Fragment {
+public class MyFragment extends Fragment implements View.OnClickListener{
 
+    private Button clickme;
+    private int counter;
+    private  communicator comm;
 
     public MyFragment() {
         Log.v(getClass().getSimpleName(),"MyFragment Constrcut");
@@ -30,5 +34,19 @@ public class MyFragment extends Fragment {
 
     }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        comm=(communicator)getActivity();
+        this.clickme=(Button)getActivity().findViewById(R.id.buttonf);
+        clickme.setOnClickListener(this);
+    }
 
+    @Override
+    public void onClick(View v) {
+
+        counter++;
+        comm.respond("The button clicked:"+counter);
+
+    }
 }

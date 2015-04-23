@@ -3,6 +3,8 @@ package com.example.steven.app1;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class Blank extends ActionBarActivity {
+public class Blank extends ActionBarActivity implements communicator{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,5 +51,16 @@ public class Blank extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void respond(String data) {
+        FragmentManager manager=getFragmentManager();
+        MyFragment2 target= (MyFragment2)manager.findFragmentByTag("myfragment2");
+        MyFragment target1= (MyFragment)manager.findFragmentById(R.id.fragment1);
+        Log.d(getClass().getSimpleName(),"~~~~"+target1.getString(R.string.hello_blank_fragment));
+        Log.d(getClass().getSimpleName(),"~~~~"+target.getTag());
+        target.changedData(data);
+
     }
 }
