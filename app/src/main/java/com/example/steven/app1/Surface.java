@@ -6,6 +6,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Picture;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.SoundPool;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -26,9 +30,20 @@ public class Surface extends Activity implements View.OnTouchListener{
     Bitmap test;
     Bitmap background;
     Bitmap plus;
+    SoundPool sp;
+    int clickid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP) {
+            AudioAttributes clicksound = new AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_MUSIC).setUsage(AudioAttributes.USAGE_GAME).build();
+            sp = new SoundPool.Builder().setMaxStreams(10).setAudioAttributes(clicksound).build();
+            this.clickid = sp.load(this, R.raw.hello2, 1);
+        }else {
+            sp=new SoundPool(10, AudioManager.STREAM_MUSIC,1);
+            clickid=sp.load(this,R.raw.hello2,1);
+        }
 
         surfaceview = new MyBringBackSurface(this);
         surfaceview.setOnTouchListener(this);
@@ -64,7 +79,6 @@ public class Surface extends Activity implements View.OnTouchListener{
         /*
             FPS , to lower the FPS, use sleep. Maybe not a good option;
          */
-
         try {
             Thread.sleep(50);
         } catch (InterruptedException e) {
@@ -76,6 +90,7 @@ public class Surface extends Activity implements View.OnTouchListener{
         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN:
             {
+                this.sp.play(this.clickid,1,1,1,0,1);
                 dX=0;
                 dY=0;
                 fX=0;
@@ -91,6 +106,7 @@ public class Surface extends Activity implements View.OnTouchListener{
             }
             case MotionEvent.ACTION_UP:
             {
+                this.sp.play(this.clickid,1,1,1,0,1);
                 fX=event.getX();
                 fY=event.getY();
                 dX=fX-sX;

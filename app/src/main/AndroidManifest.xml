@@ -13,7 +13,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <!-- <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" /> -->
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -122,37 +122,41 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".TabActivity"
             android:label="Contacts Manager" >
             <intent-filter>
                 <action android:name="com.example.steven.app1.TabActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".GFX"
             android:label="Graphics" >
             <intent-filter>
                 <action android:name="com.example.steven.app1.GFX" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Surface"
             android:label="surface" >
             <intent-filter>
                 <action android:name="com.example.steven.app1.Surface" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-
-
-
+        <activity
+            android:name=".Blank"
+            android:label="@string/title_activity_blank" >
+            <intent-filter>
+                <action android:name="com.example.steven.app1.Blank" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

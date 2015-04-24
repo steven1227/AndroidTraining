@@ -16,5 +16,9 @@
     <string name="clearResults">Clear Results</string>
     <string name="noResults">No results!</string>
     <string name="title_activity_tab">TabActivity</string>
+    <string name="title_activity_blank">Blank</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment Rendong</string>
 
 </resources>

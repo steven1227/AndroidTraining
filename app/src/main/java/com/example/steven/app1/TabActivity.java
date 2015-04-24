@@ -121,6 +121,7 @@ public class TabActivity extends ActionBarActivity {
         }
 
 
+
         list.setAdapter(temp);
 
         name.addTextChangedListener(new TextWatcher() {
@@ -209,6 +210,7 @@ public class TabActivity extends ActionBarActivity {
 
 
     }
+
 
     @Override
         public void onActivityResult(int reqCode, int resCode, Intent data){
