@@ -19,15 +19,15 @@ public class Blank extends ActionBarActivity implements communicator{
         super.onCreate(savedInstanceState);
         Log.e(getClass().getSimpleName(), "OnCreate");
         setContentView(R.layout.activity_blank);
-
-        MyFragment2 frag=new MyFragment2();
+//
+//        MyFragment2 frag=new MyFragment2();
 //        MyFragment frag1=new MyFragment();
-        FragmentManager manager=getFragmentManager();
-        FragmentTransaction trans=manager.beginTransaction();
-
-
-        trans.add(R.id.blank,frag,"myfragment2");
-        trans.commit();
+//        FragmentManager manager=getFragmentManager();
+//        FragmentTransaction trans=manager.beginTransaction();
+//
+//        trans.add(R.id.blank,frag1,"myfragment1");
+//        trans.add(R.id.blank,frag,"myfragment2");
+//        trans.commit();
     }
 
 
@@ -56,10 +56,10 @@ public class Blank extends ActionBarActivity implements communicator{
     @Override
     public void respond(String data) {
         FragmentManager manager=getFragmentManager();
-        MyFragment2 target= (MyFragment2)manager.findFragmentByTag("myfragment2");
-        MyFragment target1= (MyFragment)manager.findFragmentById(R.id.fragment1);
-        Log.d(getClass().getSimpleName(),"~~~~"+target1.getString(R.string.hello_blank_fragment));
-        Log.d(getClass().getSimpleName(),"~~~~"+target.getTag());
+        MyFragment2 target= (MyFragment2)manager.findFragmentById(R.id.fragment2);
+//        MyFragment target1= (MyFragment)manager.findFragmentById(R.id.fragment1);
+//        Log.d(getClass().getSimpleName(),"~~~~"+target1.getString(R.string.hello_blank_fragment));
+//        Log.d(getClass().getSimpleName(),"~~~~"+target.getTag());
         target.changedData(data);
 
     }

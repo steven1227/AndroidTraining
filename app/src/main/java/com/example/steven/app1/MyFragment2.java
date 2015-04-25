@@ -17,6 +17,7 @@ public class MyFragment2 extends Fragment {
 
     private TextView clickme;
 
+
     public MyFragment2() {
         Log.v(getClass().getSimpleName(),"MyFragment2 Constrcut");
         // Required empty public constructor
@@ -25,7 +26,17 @@ public class MyFragment2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.v(getClass().getSimpleName(), "On CreateView2");
-        return inflater.inflate(R.layout.my_fragment2,container,false);
+        View view=inflater.inflate(R.layout.my_fragment2,container,false);
+//        this.clickme=(TextView)view.findViewById(R.id.hello2);
+        if(savedInstanceState==null)
+        {
+
+        }else
+        {
+
+            ((TextView)view.findViewById(R.id.hello2)).setText(savedInstanceState.getString("show"));
+        }
+        return view;
     }
 
 
@@ -35,7 +46,14 @@ public class MyFragment2 extends Fragment {
         this.clickme=(TextView)getActivity().findViewById(R.id.hello2);
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("show", String.valueOf(clickme.getText()));
+    }
+
     public void changedData (String data){
+
         clickme.setText(data);
 
     }

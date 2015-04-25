@@ -7,12 +7,28 @@
     tools:context="com.example.steven.app1.Blank">
 
 
+    <!--<fragment-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:name="com.example.steven.app1.MyFragment"-->
+        <!--android:id="@+id/fragment1"-->
+        <!--android:layout_marginBottom="61dp"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_centerHorizontal="true" />-->
+
     <fragment
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:name="com.example.steven.app1.MyFragment"
         android:id="@+id/fragment1"
-        android:layout_marginBottom="61dp"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/fragment2"
+        android:layout_centerHorizontal="true" />
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.example.steven.app1.MyFragment2"
+        android:id="@+id/fragment2"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

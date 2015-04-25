@@ -34,12 +34,29 @@ public class MyFragment extends Fragment implements View.OnClickListener{
 
     }
 
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        if(savedInstanceState==null)
+        {
+            counter=0;
+        }
+        else
+        {
+            counter=savedInstanceState.getInt("counter");
+        }
+
         comm=(communicator)getActivity();
         this.clickme=(Button)getActivity().findViewById(R.id.buttonf);
         clickme.setOnClickListener(this);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("counter",counter);
+
     }
 
     @Override
