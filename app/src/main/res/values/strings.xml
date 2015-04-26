@@ -21,4 +21,18 @@
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment Rendong</string>
 
+    <string-array name="title">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+    </string-array>
+
+    <string-array name="description">
+        <item>Delft</item>
+        <item>Amsterdam</item>
+        <item>Munich</item>
+        <item>Berlin</item>
+    </string-array>
+
 </resources>
