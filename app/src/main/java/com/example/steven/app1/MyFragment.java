@@ -66,4 +66,6 @@ public class MyFragment extends Fragment implements View.OnClickListener{
         comm.respond("The button clicked:"+counter);
 
     }
+
+
 }

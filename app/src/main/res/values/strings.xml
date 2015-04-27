@@ -34,5 +34,6 @@
         <item>Munich</item>
         <item>Berlin</item>
     </string-array>
+    <string name="title_activity_blank3">Blank3</string>
 
 </resources>

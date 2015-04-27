@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.steven.app1.Blank3">
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="showdialog"
+        android:text="Show Dialog"
+        android:id="@+id/button2"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="89dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello,World"
+        android:id="@+id/texttry"
+        android:layout_marginTop="79dp"
+        android:layout_below="@+id/button2"
+        android:layout_centerHorizontal="true"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:textColor="#ffff3119" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Alert"
+        android:onClick="showAlert"
+        android:id="@+id/button5"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/texttry"
+        android:layout_alignStart="@+id/texttry"
+        android:layout_marginBottom="71dp" />
+</RelativeLayout>

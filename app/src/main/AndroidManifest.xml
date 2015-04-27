@@ -149,24 +149,35 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Blank"
             android:label="@string/title_activity_blank" >
             <intent-filter>
                 <action android:name="com.example.steven.app1.Blank" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Blank2"
             android:label="@string/title_activity_blank" >
             <intent-filter>
                 <action android:name="com.example.steven.app1.Blank2" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".Blank3"
+            android:label="@string/title_activity_blank3" >
+            <intent-filter>
+                <action android:name="com.example.steven.app1.Blank3" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
 
 
     </application>
