@@ -20,8 +20,8 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
-    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <android:uses-permission
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
 
@@ -109,7 +109,6 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="com.example.steven.app1.Openclass" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -118,19 +117,22 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".TabActivity"
-            android:label="Contacts Manager" >
+            android:label="Contacts Manager"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"
+            >
             <intent-filter>
                 <action android:name="com.example.steven.app1.TabActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".GFX"
             android:label="Graphics" >
@@ -145,7 +147,6 @@
             android:label="surface" >
             <intent-filter>
                 <action android:name="com.example.steven.app1.Surface" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -167,7 +168,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Blank3"
             android:label="@string/title_activity_blank3" >
@@ -177,9 +177,36 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".SwipeTab"
+            android:label="@string/title_activity_swipe_tab" >
+            <intent-filter>
+                <action android:name="com.example.steven.app1.SwipeTab" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Swipe2"
+            android:label="@string/title_activity_swipe2" >
+            <intent-filter>
+                <action android:name="com.example.steven.app1.Swipe2" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Actionbb"
+            android:label="@string/title_activity_actionbb"
+            android:parentActivityName=".menu"
+            android:theme="@style/CustomActionBarTheme"
+            >
 
+            <intent-filter>
+                <action android:name="com.example.steven.app1.Actionbb" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

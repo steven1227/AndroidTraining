@@ -20,7 +20,7 @@ import java.util.Arrays;
  * Created by steven on 2-3-15.
  */
 public class menu extends ListActivity{
-   String [] temp ={"MainActivity","Testplay","Email","Camera","Data","Openclass","Map","GFX","TabActivity","Surface","Blank","Blank2","Blank3"};
+   String [] temp ={"MainActivity","Testplay","Email","Camera","Data","Openclass","Map","GFX","TabActivity","Surface","Blank","Blank2","Blank3","SwipeTab","Swipe2","Actionbb"};
     private ArrayList<String> classes=new ArrayList<>(Arrays.asList(temp));
 
     ArrayAdapter<String> menulist;
@@ -39,7 +39,7 @@ public class menu extends ListActivity{
         super.setListAdapter(menulist);
 
         classes.add("test1");
-        classes.add("test2");
+//        classes.add("Swipe2");
 
 
 //        menulist.add("t5");

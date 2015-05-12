@@ -35,5 +35,8 @@
         <item>Berlin</item>
     </string-array>
     <string name="title_activity_blank3">Blank3</string>
+    <string name="title_activity_swipe_tab">SwipeTab</string>
+    <string name="title_activity_swipe2">Swipe2</string>
+    <string name="title_activity_actionbb">Actionbb</string>
 
 </resources>

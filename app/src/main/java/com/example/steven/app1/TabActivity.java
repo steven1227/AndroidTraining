@@ -33,7 +33,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 
-public class TabActivity extends ActionBarActivity {
+public class TabActivity extends Activity {
 
     private Button click;
     private EditText name;

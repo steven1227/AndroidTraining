@@ -22,6 +22,7 @@ public class MyFragment2 extends Fragment {
         Log.v(getClass().getSimpleName(),"MyFragment2 Constrcut");
         // Required empty public constructor
     }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class MyFragment2 extends Fragment {
     public void changedData (String data){
 
         clickme.setText(data);
-
+        String temp=getResources().getString(R.string.aboutus);
+        clickme.setText(R.string.aboutus);
     }
 }
