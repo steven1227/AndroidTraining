@@ -20,7 +20,7 @@ import java.util.Arrays;
  * Created by steven on 2-3-15.
  */
 public class menu extends ListActivity{
-   String [] temp ={"MainActivity","Testplay","Email","Camera","Data","Openclass","Map","GFX","TabActivity","Surface","Blank","Blank2","Blank3","SwipeTab","Swipe2","Actionbb"};
+   String [] temp ={"MainActivity","Testplay","Email","Camera","Data","Openclass","Map","GFX","TabActivity","Surface","Blank","Blank2","Blank3","SwipeTab","Swipe2","Actionbb","Drawer","Draw2"};
     private ArrayList<String> classes=new ArrayList<>(Arrays.asList(temp));
 
     ArrayAdapter<String> menulist;
@@ -50,13 +50,9 @@ public class menu extends ListActivity{
         super.onListItemClick(l, v, position, id);
         if (true) {
             String ourclass = null;
-                classes.add("test5");
+//                classes.add("test5");
                 menulist.notifyDataSetChanged();
 
-
-//            String a=String.valueOf(R.string.title_activity_blank);
-//            Log.d("---------\nhi\n---------",a);
-                //super.setListAdapter(menulist);
 
                 ourclass = "com.example.steven.app1." + classes.get(position);
                 Intent ourIntent = new Intent(ourclass);

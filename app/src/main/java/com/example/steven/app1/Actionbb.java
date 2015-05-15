@@ -39,7 +39,7 @@ public class Actionbb extends Activity {
 
         bar.setDisplayHomeAsUpEnabled(true);
         bar.setTitle("what is this");
-        bar.setHomeButtonEnabled(false);
+//        bar.setHomeButtonEnabled(false);
 
     }
 

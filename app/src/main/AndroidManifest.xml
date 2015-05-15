@@ -109,6 +109,7 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="com.example.steven.app1.Openclass" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -117,22 +118,20 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".TabActivity"
             android:label="Contacts Manager"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"
-            >
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
             <intent-filter>
                 <action android:name="com.example.steven.app1.TabActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".GFX"
             android:label="Graphics" >
@@ -147,6 +146,7 @@
             android:label="surface" >
             <intent-filter>
                 <action android:name="com.example.steven.app1.Surface" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -199,11 +199,27 @@
             android:name=".Actionbb"
             android:label="@string/title_activity_actionbb"
             android:parentActivityName=".menu"
-            android:theme="@style/CustomActionBarTheme"
-            >
-
+            android:theme="@style/CustomActionBarTheme" >
             <intent-filter>
                 <action android:name="com.example.steven.app1.Actionbb" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Drawer"
+            android:label="@string/title_activity_drawer" >
+            <intent-filter>
+                <action android:name="com.example.steven.app1.Drawer" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Draw2"
+            android:label="@string/title_activity_draw2" >
+            <intent-filter>
+                <action android:name="com.example.steven.app1.Draw2" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
