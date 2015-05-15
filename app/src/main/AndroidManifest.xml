@@ -217,7 +217,8 @@
         </activity>
         <activity
             android:name=".Draw2"
-            android:label="@string/title_activity_draw2" >
+            android:label="@string/title_activity_draw2"
+            android:theme="@android:style/Theme.Holo" >
             <intent-filter>
                 <action android:name="com.example.steven.app1.Draw2" />
                 <category android:name="android.intent.category.DEFAULT" />
