@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
+import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -16,12 +17,15 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
 
 
 public class Draw2 extends Activity implements AdapterView.OnItemClickListener {
@@ -30,6 +34,10 @@ public class Draw2 extends Activity implements AdapterView.OnItemClickListener {
     private ListView listView;
     private ArrayList<String> planets;
     private ActionBarDrawerToggle drawlisten;
+
+    private static int progress;
+    private ProgressBar bar2;
+    private Handler handler=new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +62,11 @@ public class Draw2 extends Activity implements AdapterView.OnItemClickListener {
         planets.add("Linkedin");
 
 
+        this.bar2=(ProgressBar)findViewById(R.id.progrss);
+        this.bar2.setMax(200);
+//        bar2.setProgress(100);
+
+
 
         this.drawerLayout=(DrawerLayout)findViewById(R.id.drawerLayout);
         drawlisten=new ActionBarDrawerToggle(this,this.drawerLayout,R.drawable.ic_launcher,R.drawable.ic_launcher_web){
@@ -76,6 +89,48 @@ public class Draw2 extends Activity implements AdapterView.OnItemClickListener {
         ActionBar bar=getActionBar();
         bar.setHomeButtonEnabled(true);
         bar.setDisplayHomeAsUpEnabled(true);
+
+        Button start=(Button)findViewById(R.id.button6);
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dosomework1();
+            }
+
+
+        });
+
+
+    }
+
+    private void dosomework1() {
+        progress=0;
+
+        Thread thread=new Thread(){
+          public void run()  {
+              while(progress<200){
+                  try {
+                      sleep(20);
+                  } catch (InterruptedException e) {
+                      e.printStackTrace();
+                  }
+                      bar2.setProgress(progress);
+                      progress++;
+//                    handler.post(this);
+              }
+            if(progress==200)
+            {
+                Draw2.this.runOnUiThread(new Runnable() {
+                    public void run() {
+                        Toast.makeText(Draw2.this, "Finish", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+          }
+        };
+
+        thread.start();
+
 
     }
 
