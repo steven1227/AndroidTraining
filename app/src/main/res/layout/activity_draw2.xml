@@ -16,7 +16,7 @@
         android:layout_width="240dp"
         android:layout_gravity="left"
         android:layout_height="match_parent"
-        android:background="#7a8b09ff">
+        android:background="@drawable/list_back">
     </ListView>
 
 

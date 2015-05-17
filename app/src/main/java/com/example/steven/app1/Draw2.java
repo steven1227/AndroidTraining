@@ -2,7 +2,9 @@ package com.example.steven.app1;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -10,9 +12,13 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -30,11 +36,23 @@ public class Draw2 extends Activity implements AdapterView.OnItemClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_draw2);
         listView=(ListView)findViewById(R.id.drawerlist);
+        Drawable background = listView.getBackground();
+        background.setAlpha(100);
+
         planets=new ArrayList<>();
-        listView.setAdapter(new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, planets));
+
+//        listView.setAdapter(new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, planets));
+        /***
+         * we can use the easy list Adapter
+         * but if you want a custom one, create a custom one adapter class for your self
+         */
+        listView.setAdapter(new Mydapter());
         listView.setOnItemClickListener(this);
-        planets.add("Welcome");
-        planets.add("quit");
+        planets.add("Facebook");
+        planets.add("Youtube");
+        planets.add("Twitter");
+        planets.add("Linkedin");
+
 
 
         this.drawerLayout=(DrawerLayout)findViewById(R.id.drawerLayout);
@@ -49,7 +67,7 @@ public class Draw2 extends Activity implements AdapterView.OnItemClickListener {
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
-                Toast.makeText(getApplicationContext(),"close",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Draw2.this,"close",Toast.LENGTH_SHORT).show();
             }
 
 
@@ -102,4 +120,39 @@ public class Draw2 extends Activity implements AdapterView.OnItemClickListener {
         Toast.makeText(this,planets.get(position),Toast.LENGTH_SHORT).show();
         getActionBar().setTitle(planets.get(position));
     }
+
+
+
+    class Mydapter extends BaseAdapter{
+
+        int[] draw={R.drawable.facebook,R.drawable.youtube,R.drawable.twitter,R.drawable.linkedin};
+        @Override
+        public int getCount() {
+            return planets.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return planets.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if (convertView==null)
+                convertView=getLayoutInflater().inflate(R.layout.custom,parent,false);
+            ImageView icon=(ImageView)convertView.findViewById(R.id.imageView);
+            TextView title=(TextView)convertView.findViewById(R.id.drawtext);
+            title.setText(planets.get(position));
+            icon.setImageResource(draw[position]);
+            return convertView;
+        }
+    }
 }
+
+
+
