@@ -24,6 +24,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 
@@ -94,6 +99,9 @@ public class Draw2 extends Activity implements AdapterView.OnItemClickListener {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+               Thread t1= new Thread(new mythread(),"download");
+                t1.start();
                 dosomework1();
             }
 
@@ -130,10 +138,48 @@ public class Draw2 extends Activity implements AdapterView.OnItemClickListener {
         };
 
         thread.start();
-
-
     }
 
+
+
+    class mythread implements Runnable{
+
+        @Override
+        public void run() {
+            dosomework2();
+        }
+    }
+
+    private void dosomework2(){
+        HttpURLConnection connect=null;
+        InputStream input=null;
+
+
+        try {
+            URL downloadURL=new URL("http://www.parkeasier.com/wp-content/uploads/2015/05/android-for-wallpaper-8.png");
+            connect=(HttpURLConnection)downloadURL.openConnection();
+            input=connect.getInputStream();
+
+            while (input.read()!=-1){
+
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+           catch (IOException e) {
+               e.printStackTrace();
+           }
+        finally {
+//            if(connect!=null)
+//                connect.disconnect();
+//            if(input!=null)
+//                try {
+//                    input.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+        }
+    }
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
