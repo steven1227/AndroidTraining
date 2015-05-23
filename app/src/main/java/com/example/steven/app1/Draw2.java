@@ -5,11 +5,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Environment;
 import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +27,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -102,7 +107,7 @@ public class Draw2 extends Activity implements AdapterView.OnItemClickListener {
 
                Thread t1= new Thread(new mythread(),"download");
                 t1.start();
-                dosomework1();
+//                dosomework2();
             }
 
 
@@ -153,16 +158,30 @@ public class Draw2 extends Activity implements AdapterView.OnItemClickListener {
     private void dosomework2(){
         HttpURLConnection connect=null;
         InputStream input=null;
-
+        FileOutputStream out=null;
 
         try {
             URL downloadURL=new URL("http://www.parkeasier.com/wp-content/uploads/2015/05/android-for-wallpaper-8.png");
             connect=(HttpURLConnection)downloadURL.openConnection();
             input=connect.getInputStream();
 
-            while (input.read()!=-1){
+            File file= new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath()
+                    +"/"+Uri.parse("http://www.parkeasier.com/wp-content/uploads/2015/05/android-for-wallpaper-8.png").getLastPathSegment());
+            out=new FileOutputStream(file);
+            Log.e("file position:",file.getAbsolutePath());
+            byte[] buffer=new byte[1024];
+            int flag;
+
+            while ((flag=input.read(buffer))!=-1){
+                out.write(buffer,0,flag);
+
+                Log.v(Thread.currentThread().getName(),String.valueOf(flag));
 
             }
+
+            Log.v(Thread.currentThread().getName(),"success");
+//            Toast.makeText(Draw2.this, "Finish", Toast.LENGTH_SHORT).show();
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -170,14 +189,26 @@ public class Draw2 extends Activity implements AdapterView.OnItemClickListener {
                e.printStackTrace();
            }
         finally {
-//            if(connect!=null)
-//                connect.disconnect();
-//            if(input!=null)
-//                try {
-//                    input.close();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
+
+
+            /*
+            * finally close the pipe and url connection
+            * */
+            if(connect!=null)
+                connect.disconnect();
+            if(input!=null)
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            if(out!=null){
+                try {
+                    out.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
     @Override
