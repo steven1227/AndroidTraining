@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Message;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -54,7 +55,7 @@ public class Draw2 extends Activity implements AdapterView.OnItemClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_draw2);
         listView=(ListView)findViewById(R.id.drawerlist);
-        Drawable background = listView.getBackground();
+        final Drawable background = listView.getBackground();
         background.setAlpha(100);
 
         planets=new ArrayList<>();
@@ -73,7 +74,7 @@ public class Draw2 extends Activity implements AdapterView.OnItemClickListener {
 
 
         this.bar2=(ProgressBar)findViewById(R.id.progrss);
-        this.bar2.setMax(200);
+        this.bar2.setMax(200000);
 //        bar2.setProgress(100);
 
 
@@ -104,7 +105,17 @@ public class Draw2 extends Activity implements AdapterView.OnItemClickListener {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progress=0;
 
+                handler=new Handler(){
+                    @Override
+                    public void handleMessage(Message msg) {
+                       bar2.setProgress(msg.arg1);
+                    }
+                };
+//                Thread t1=new Thread(new backgroud(),"pro");
+//                t1.start();
+//                dosomework1();
                Thread t1= new Thread(new mythread(),"download");
                 t1.start();
 //                dosomework2();
@@ -114,6 +125,26 @@ public class Draw2 extends Activity implements AdapterView.OnItemClickListener {
         });
 
 
+    }
+
+
+    class backgroud implements Runnable{
+
+        @Override
+        public void run() {
+
+            for(int i=0;i<=1000;i++){
+                Message msg=Message.obtain();
+                msg.arg1=i;
+                handler.sendMessage(msg);
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
     }
 
     private void dosomework1() {
@@ -131,11 +162,13 @@ public class Draw2 extends Activity implements AdapterView.OnItemClickListener {
                       progress++;
 //                    handler.post(this);
               }
+
             if(progress==200)
             {
                 Draw2.this.runOnUiThread(new Runnable() {
                     public void run() {
                         Toast.makeText(Draw2.this, "Finish", Toast.LENGTH_SHORT).show();
+                        bar2.setVisibility(View.INVISIBLE);
                     }
                 });
             }
@@ -151,7 +184,17 @@ public class Draw2 extends Activity implements AdapterView.OnItemClickListener {
 
         @Override
         public void run() {
+
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    bar2.setVisibility(View.VISIBLE);
+                    Toast.makeText(Draw2.this, "start", Toast.LENGTH_SHORT).show();
+                }
+            });
+
             dosomework2();
+
         }
     }
 
@@ -163,20 +206,28 @@ public class Draw2 extends Activity implements AdapterView.OnItemClickListener {
         try {
             URL downloadURL=new URL("http://www.parkeasier.com/wp-content/uploads/2015/05/android-for-wallpaper-8.png");
             connect=(HttpURLConnection)downloadURL.openConnection();
+
+            Log.e("file size",String.valueOf(connect.getContentLength()));
             input=connect.getInputStream();
 
             File file= new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath()
                     +"/"+Uri.parse("http://www.parkeasier.com/wp-content/uploads/2015/05/android-for-wallpaper-8.png").getLastPathSegment());
             out=new FileOutputStream(file);
-            Log.e("file position:",file.getAbsolutePath());
+
             byte[] buffer=new byte[1024];
             int flag;
 
             while ((flag=input.read(buffer))!=-1){
                 out.write(buffer,0,flag);
 
-                Log.v(Thread.currentThread().getName(),String.valueOf(flag));
+                Message msg=Message.obtain();
+                msg.arg1=progress;
+                handler.sendMessage(msg);
+//                bar2.setProgress(progress);
+                progress=progress+(int)Math.round(200000*(1.0*flag/connect.getContentLength()));
 
+                Log.v(Thread.currentThread().getName(),String.valueOf(Math.round(200000 * flag * 1.0 / connect.getContentLength())));
+                Thread.sleep(100);
             }
 
             Log.v(Thread.currentThread().getName(),"success");
@@ -187,8 +238,9 @@ public class Draw2 extends Activity implements AdapterView.OnItemClickListener {
         }
            catch (IOException e) {
                e.printStackTrace();
-           }
-        finally {
+           } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
 
 
             /*
@@ -209,6 +261,12 @@ public class Draw2 extends Activity implements AdapterView.OnItemClickListener {
                     e.printStackTrace();
                 }
             }
+            Draw2.this.runOnUiThread(new Runnable() {
+                public void run() {
+                    Toast.makeText(Draw2.this, "finish", Toast.LENGTH_SHORT).show();
+                    bar2.setVisibility(View.INVISIBLE);
+                }
+            });
         }
     }
     @Override
